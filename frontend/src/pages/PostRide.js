@@ -198,7 +198,7 @@ const PostRide = () => {
           />
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="btn btn-primary" disabled={loading}>
           {loading ? 'Posting...' : 'Post Ride'}
         </button>
       </form>

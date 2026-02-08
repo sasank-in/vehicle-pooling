@@ -73,7 +73,11 @@ const MyBookings = () => {
                 </div>
                 <div className="detail">
                   <label>Total Price:</label>
-                  <p>${booking.total_price.toFixed(2)}</p>
+                  <p>
+                    ${Number.isFinite(parseFloat(booking.total_price))
+                      ? parseFloat(booking.total_price).toFixed(2)
+                      : '0.00'}
+                  </p>
                 </div>
                 <div className="detail">
                   <label>Vehicle:</label>

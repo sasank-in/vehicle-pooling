@@ -33,10 +33,13 @@ const Navigation = () => {
                 <Link to="/profile" className="nav-link">Profile</Link>
               </li>
               <li className="nav-item">
-                <button className="nav-link logout-btn" onClick={() => {
-                  logout();
-                  window.location.href = '/';
-                }}>
+                <button
+                  className="nav-link logout-btn btn btn-ghost btn-danger"
+                  onClick={() => {
+                    logout();
+                    window.location.href = '/';
+                  }}
+                >
                   Logout
                 </button>
               </li>

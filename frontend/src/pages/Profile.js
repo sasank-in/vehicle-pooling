@@ -133,7 +133,12 @@ const Profile = () => {
             </div>
             <div className="info-row">
               <label>Rating:</label>
-              <p>{profileData?.rating?.toFixed(1)} / 5.0</p>
+              <p>
+                {Number.isFinite(parseFloat(profileData?.rating))
+                  ? parseFloat(profileData.rating).toFixed(1)
+                  : '0.0'}{' '}
+                / 5.0
+              </p>
             </div>
             <div className="info-row">
               <label>Total Rides:</label>

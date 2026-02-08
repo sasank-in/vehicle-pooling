@@ -107,7 +107,7 @@ const SearchRides = () => {
           />
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="btn btn-primary" disabled={loading}>
           {loading ? 'Searching...' : 'Search Rides'}
         </button>
       </form>

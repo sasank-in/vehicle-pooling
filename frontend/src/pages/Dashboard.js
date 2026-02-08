@@ -81,7 +81,11 @@ const Dashboard = () => {
               <div className="stat-label">Total Bookings</div>
             </div>
             <div className="stat-card">
-              <div className="stat-value">{stats?.avg_seats_available?.toFixed(1) || 0}</div>
+              <div className="stat-value">
+                {Number.isFinite(parseFloat(stats?.avg_seats_available))
+                  ? parseFloat(stats.avg_seats_available).toFixed(1)
+                  : '0.0'}
+              </div>
               <div className="stat-label">Avg Seats Available</div>
             </div>
             <div className="stat-card">
@@ -135,11 +139,11 @@ const Dashboard = () => {
                 onChange={(e) => setVehicleForm({...vehicleForm, seats: e.target.value})}
                 required
               />
-              <button type="submit">Add Vehicle</button>
-              <button type="button" onClick={() => setShowAddVehicle(false)}>Cancel</button>
+              <button type="submit" className="btn btn-primary">Add Vehicle</button>
+              <button type="button" className="btn btn-secondary" onClick={() => setShowAddVehicle(false)}>Cancel</button>
             </form>
           ) : (
-            <button onClick={() => setShowAddVehicle(true)}>+ Add Vehicle</button>
+            <button className="btn btn-primary" onClick={() => setShowAddVehicle(true)}>+ Add Vehicle</button>
           )}
         </section>
 
@@ -153,7 +157,12 @@ const Dashboard = () => {
                 <div key={ride.id} className="ride-mini-card">
                   <p><strong>{ride.driver_name}</strong></p>
                   <p>{ride.start_address} → {ride.end_address}</p>
-                  <p className="price">${ride.price_per_seat.toFixed(2)}/seat</p>
+                  <p className="price">
+                    ${Number.isFinite(parseFloat(ride.price_per_seat))
+                      ? parseFloat(ride.price_per_seat).toFixed(2)
+                      : '0.00'}
+                    /seat
+                  </p>
                 </div>
               ))}
             </div>

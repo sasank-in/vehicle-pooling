@@ -16,9 +16,16 @@ const paymentRoutes = require('./routes/payments');
 // Initialize app
 const app = express();
 const server = http.createServer(app);
+const defaultOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+const envOrigins = (process.env.FRONTEND_URL || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+const allowedOrigins = envOrigins.length > 0 ? envOrigins : defaultOrigins;
+
 const io = socketIO(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
     credentials: true
   }
@@ -26,7 +33,7 @@ const io = socketIO(server, {
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(express.json());
